@@ -1,14 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Button, Dimensions } from 'react-native';
-
+import Login2 from './Login2';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
+// import { createStackNavigator } from '@react-navigation/stack';
+// import Login2 from './Login2';
 
 import logoscreen from './Media/vk-logo.png'
 import facebook from './Media/facebook.png'
 import twitter from './Media/twitter.png'
 import mail from './Media/message.png'
+
+const Stack = createStackNavigator();
+
+function MyStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={App} />
+      <Stack.Screen name="Login2" component={Login2} />
+      {/* <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} /> */}
+    </Stack.Navigator>
+  );
+}
 
 
 class App extends React.Component {
