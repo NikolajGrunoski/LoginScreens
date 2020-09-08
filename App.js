@@ -1,34 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Button, Dimensions } from 'react-native';
-import Login2 from './Login2';
-// import Icon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-gesture-handler';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import Login2 from './Login2';
-
 import logoscreen from './Media/vk-logo.png'
 import facebook from './Media/facebook.png'
 import twitter from './Media/twitter.png'
 import mail from './Media/message.png'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const Stack = createStackNavigator();
-
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={App} />
-      <Stack.Screen name="Login2" component={Login2} />
-      {/* <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} /> */}
-    </Stack.Navigator>
-  );
-}
-
+import Login2 from './Login2'
 
 class App extends React.Component {
-  render() {
 
+  static navigationOptions = {
+    header: null
+  }
+
+  goToDashboard = () => {
+    this.props.navigation.navigate('Login2');
+  }
+  render() {
     return (
       <View className='Container'>
         <View style={styles.logoContainer}>
@@ -71,8 +63,8 @@ class App extends React.Component {
           style={{
             borderBottomColor: 'black',
             borderBottomWidth: 1,
-            marginLeft:40,
-            marginRight:40
+            marginLeft: 40,
+            marginRight: 40
           }}
         />
 
@@ -84,12 +76,28 @@ class App extends React.Component {
 
         </View>
 
+        <TouchableOpacity  onPress={this.goToDashboard}>
+
+         
+
+          <Text style={styles.text}>Log in with Facebook</Text>
+
+        </TouchableOpacity>
       </View>
 
     )
 
   }
 }
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    Screen: App
+  },
+  Login2: {
+    Screen: Login2
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -187,4 +195,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App
+export default createAppContainer(AppNavigator);
