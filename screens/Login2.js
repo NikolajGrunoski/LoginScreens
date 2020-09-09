@@ -8,7 +8,7 @@ export default class Login2 extends Component {
     render() {
         return (
             <View>
-
+                <Text>piperki</Text>
             </View>
         )
     }
